@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>เข้าสู่ระบบ | มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<!-- ใช้พื้นหลังสีเทาอุ่นเหมือนหน้าสมัครเรียน (class "page-form" ใน style.css) -->
+<body class="page-form">
+
+  <!-- ===== ส่วนหัว: โลโก้ + เมนู ===== -->
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <img src="ing/logo.png" alt="ตราสัญลักษณ์มหาวิทยาลัย">
+      <span>มหาลัยพระจอมเกล้าพระนครเหนือ</span>
+    </a>
+
+    <nav class="main-nav" aria-label="เมนูหลัก">
+      <a href="index.html">หน้าแรก</a>
+      <a href="form.html">สมัครเรียน</a>
+      <a href="login.html" aria-current="page">เข้าสู่ระบบ</a>
+      <a href="contact.html">ติดต่อ</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ===== การ์ดเข้าสู่ระบบ =====
+         action="#" → ตอนนี้ยังไม่ส่งไปไหน (ใส่ลิงก์ของ server ทีหลัง) -->
+    <form class="login-card" action="#" method="post">
+      <h1>เข้าสู่ระบบ</h1>
+      <p class="subtitle">กรอกชื่อและเลขบัตรประชาชนที่ใช้สมัครเรียน</p>
+
+      <div class="field">
+        <label for="fullname">ชื่อ–นามสกุล <span class="req">*</span></label>
+        <input type="text" id="fullname" name="fullname" autocomplete="name" required>
+      </div>
+
+      <div class="field">
+        <label for="citizen-id">เลขบัตรประชาชน <span class="req">*</span></label>
+        <!-- pattern="[0-9]{13}" = ต้องเป็นตัวเลข 13 หลักเท่านั้น -->
+        <input type="text" id="citizen-id" name="citizen_id"
+               inputmode="numeric" maxlength="13" pattern="[0-9]{13}"
+               placeholder="13 หลัก" required>
+      </div>
+
+      <!-- ยกเลิก = ลิงก์กลับหน้าแรก / ยืนยัน = ส่งฟอร์ม (ไปต่อที่หน้าสมัครเรียน) -->
+      <div class="login-actions">
+        <a class="btn btn-cancel" href="index.html">ยกเลิก</a>
+        <button type="submit" class="btn btn-confirm">ยืนยัน</button>
+      </div>
+    </form>
+
+  </main>
+
+  <!-- ===== ส่วนท้าย ===== -->
+  <footer class="site-footer">
+    <p>กลุ่มงานรับเข้าศึกษา กองบริการการศึกษา สำนักงานอธิการบดี ชั้น 2 อาคาร TGGS</p>
+    <p>มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ 1518 ถนนประชาราษฎร์ 1 แขวงวงศ์สว่าง เขตบางซื่อ กรุงเทพฯ 10800</p>
+    <p>โทรศัพท์: +66 2 555-2000 ต่อ 1626,1627 | +66 2 555-2171</p>
+  </footer>
+
+  <!-- ===== JavaScript: เมื่อกดยืนยัน ให้ไปหน้าสมัครเรียน ===== -->
+  <script>
+    document.querySelector('form').addEventListener('submit', function (event) {
+      event.preventDefault();               // กันไม่ให้หน้าโหลดซ้ำ
+      window.location.href = 'form.html';   // ไปหน้าสมัครเรียน
+    });
+  </script>
+
+</body>
+</html>

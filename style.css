@@ -1,0 +1,535 @@
+/* ---------- 1. ตัวแปรสี ----------
+   อยากเปลี่ยนสีของทั้งเว็บ แก้ที่นี่ที่เดียวพอ */
+:root {
+  --orange:      #ff6600;                    /* สีส้มหลัก */
+  --header-bg:   rgba(255, 102, 0, 0.6);     /* พื้นหลังแถบหัวเว็บ */
+  --footer-bg:   rgba(184, 179, 179, 0.72);  /* พื้นหลังส่วนท้าย */
+  --green:       #34c759;                    /* ปุ่มยืนยัน */
+  --red:         #ff383c;                    /* ปุ่มยกเลิก */
+  --text:        #000;                       /* สีตัวอักษร */
+  --border:      #cfc8c1;                    /* สีขอบช่องกรอก */
+}
+
+
+/* ---------- 2. พื้นฐานของเว็บ ---------- */
+
+/* ให้ความกว้าง/สูงรวมขอบและ padding แล้ว คำนวณขนาดง่ายขึ้น */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;      /* เรียง header → main → footer จากบนลงล่าง */
+  font-family: "Noto Sans Thai", "Inter", system-ui, sans-serif;
+  font-size: 1rem;
+  color: var(--text);
+  background: #fff;
+}
+
+a {
+  color: inherit;              /* ลิงก์ใช้สีเดียวกับตัวอักษรรอบๆ */
+}
+
+/* กรอบสีฟ้าตอนกดปุ่ม Tab (ช่วยให้คนที่ใช้คีย์บอร์ดเห็นว่าอยู่ตรงไหน) */
+:focus-visible {
+  outline: 3px solid #1a73e8;
+  outline-offset: 2px;
+}
+
+/* main ยืดเต็มพื้นที่ที่เหลือ ดัน footer ให้อยู่ล่างสุดเสมอ */
+main {
+  flex: 1;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.5rem 4%;
+}
+
+
+/* ---------- 3. ส่วนหัว (header + เมนู) ---------- */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;   /* โลโก้ชิดซ้าย เมนูชิดขวา */
+  flex-wrap: wrap;
+  gap: 1rem;
+  min-height: 56px;
+  padding: 0 1rem;
+  background: var(--header-bg);
+}
+
+/* โลโก้ + ชื่อมหาวิทยาลัย */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.05rem;
+  text-decoration: none;
+}
+
+.brand img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+
+/* เมนู หน้าแรก / สมัครเรียน / เข้าสู่ระบบ / ติดต่อ */
+.main-nav {
+  display: flex;
+  gap: 1.8rem;
+  padding-right: 1rem;
+  font-size: 1rem;
+}
+
+.main-nav a {
+  text-decoration: none;
+}
+
+.main-nav a:hover {
+  text-decoration: underline;
+}
+
+/* เมนูของหน้าที่เปิดอยู่ จะมีเส้นใต้
+   (ใน HTML ใส่ aria-current="page" ให้ลิงก์ของหน้านั้น) */
+.main-nav a[aria-current="page"] {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+
+/* ---------- 4. ส่วนท้าย (footer) ---------- */
+.site-footer {
+  padding: 0.7rem 1.5rem;       /* ระยะห่างบน-ล่างน้อย ให้แถบเตี้ย */
+  background: var(--footer-bg);
+  font-size: 0.8rem;            /* ตัวอักษรเล็ก */
+  line-height: 1.5;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+
+/* ---------- 5. หน้าแรก ---------- */
+
+/* รูปแบนเนอร์ใหญ่กลางหน้า */
+.banner {
+  display: block;
+  width: 100%;
+  max-width: 880px;           /* ขนาดแบนเนอร์ (ปรับตรงนี้ถ้าอยากใหญ่/เล็กกว่านี้) */
+  margin: 2.5rem auto;
+  aspect-ratio: 1697 / 468;   /* รักษาสัดส่วนภาพ */
+  object-fit: cover;
+  background: #ccc;           /* สีเทาแสดงระหว่างรูปยังโหลดไม่เสร็จ */
+}
+
+
+/* โปสเตอร์ประกาศใต้แบนเนอร์ (รูปแนวตั้ง) */
+.poster {
+  display: block;
+  width: 100%;
+  max-width: 720px;           /* ขนาดโปสเตอร์ (ปรับตรงนี้ถ้าอยากใหญ่/เล็กกว่านี้) */
+  height: auto;
+  margin: 0 auto 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(60, 40, 20, 0.12);
+}
+
+
+/* ---------- 6. หน้าสมัครเรียน (ฟอร์ม) ---------- */
+
+/* พื้นหลังหน้าฟอร์มและหน้าเข้าสู่ระบบ (ใส่ class="page-form" ที่ <body>) */
+.page-form {
+  background: #f4f2f0;
+}
+
+/* หัวข้อใหญ่ "สมัครเรียน" เหนือฟอร์ม */
+.form-title {
+  max-width: 960px;
+  margin: 0 auto 1rem;
+}
+
+.form-title h1 {
+  margin: 0 0 0.2rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.form-title p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* การ์ดสีขาวที่ห่อฟอร์มทั้งหมด */
+.form-panel {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(60, 40, 20, 0.08);
+}
+
+/* แบ่งฟอร์มเป็น 2 คอลัมน์ (หัวข้อ 1-4 วางเรียงกัน) */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.4rem 2rem;
+}
+
+/* แต่ละหัวข้ออยู่ในกล่องใหญ่กล่องเดียวกัน (ไม่มีกรอบแยก) */
+.form-section {
+  padding: 0;
+}
+
+.form-section h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0 0 1rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 2px solid rgba(255, 102, 0, 0.35);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* วงกลมสีส้มใส่เลขหัวข้อ (1, 2, 3, 4) */
+.step {
+  display: inline-grid;
+  place-items: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 50%;
+  background: var(--orange);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+/* พื้นที่วางช่องกรอก: 2 ช่องต่อแถว */
+.fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9rem 1rem;
+}
+
+/* ช่องกรอก 1 ช่อง = ป้ายชื่อ (บน) + ช่องพิมพ์ (ล่าง) */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.field > label,
+.field > .label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* เครื่องหมาย * สีแดง = ต้องกรอก */
+.req {
+  color: var(--red);
+}
+
+/* หน้าตาช่องพิมพ์ทุกชนิด */
+.field input[type="text"],
+.field input[type="tel"],
+.field input[type="date"],
+.field input[type="number"] {
+  width: 100%;
+  height: 40px;
+  padding: 0 0.8rem;
+  font: inherit;
+  font-size: 0.95rem;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.field input:hover {
+  border-color: #a9a099;
+}
+
+/* ตอนคลิกพิมพ์: ขอบส้ม + เรืองแสงเบาๆ */
+.field input:focus {
+  outline: none;
+  border-color: var(--orange);
+  box-shadow: 0 0 0 4px rgba(255, 102, 0, 0.18);
+}
+
+/* --- ปุ่มอัปโหลดไฟล์ ---
+   ซ่อน input จริงไว้ด้านบน (opacity 0) แล้วทำกรอบสวยๆ ให้เห็นแทน */
+.upload {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 40px;
+  padding: 0.3rem 0.5rem;
+  background: #fff;
+  border: 1.5px dashed #b9b0a7;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.upload:hover {
+  border-color: var(--orange);
+  background: #fff8f2;
+}
+
+/* ป้ายเล็กๆ คำว่า "อัปโหลดไฟล์" */
+.upload-btn {
+  flex: none;
+  padding: 0.2rem 0.8rem;
+  background: #ffe3d0;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* ข้อความชื่อไฟล์ (ถ้ายาวเกินให้ตัดด้วย ...) */
+.upload-name {
+  overflow: hidden;
+  font-size: 0.85rem;
+  color: #777;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ตอนเลือกไฟล์แล้ว: JavaScript จะใส่ class "has-file" ให้ → กรอบเขียว */
+.upload.has-file {
+  border-style: solid;
+  border-color: var(--green);
+}
+
+.upload.has-file .upload-name {
+  color: #1d7a37;
+}
+
+/* input จริงคลุมทั้งกรอบแบบโปร่งใส คลิกตรงไหนก็เลือกไฟล์ได้ */
+.upload input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.upload:focus-within {
+  outline: 3px solid #1a73e8;
+  outline-offset: 2px;
+}
+
+/* แถวปุ่มล่างสุด (ยกเลิก / ยืนยัน) */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.4rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid #ece6e0;
+}
+
+/* หน้าตาปุ่มพื้นฐาน (ใช้ร่วมกันทั้ง 2 ปุ่ม) */
+.btn {
+  display: inline-flex;          /* ใช้ได้ทั้ง <button> และลิงก์ <a> */
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  min-width: 150px;
+  height: 42px;
+  padding: 6px 16px;
+  border: 2px solid transparent;
+  border-radius: 100px;       /* มนเต็มที่ = ทรงแคปซูล */
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.1s, filter 0.15s, background 0.15s;
+}
+
+.btn:active {
+  transform: translateY(1px);  /* ขยับลงนิดหนึ่งตอนกด */
+}
+
+/* ปุ่มยืนยัน: พื้นเขียว */
+.btn-confirm {
+  background: var(--green);
+  border-color: var(--green);
+  box-shadow: 0 4px 12px rgba(52, 199, 89, 0.3);
+}
+
+.btn-confirm:hover {
+  filter: brightness(0.93);    /* เข้มขึ้นเล็กน้อยตอนเอาเมาส์ชี้ */
+}
+
+/* ปุ่มยกเลิก: พื้นขาวขอบแดง พอชี้เมาส์ถึงเปลี่ยนเป็นพื้นแดง */
+.btn-cancel {
+  background: #fff;
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.btn-cancel:hover {
+  background: var(--red);
+  color: #fff;
+}
+
+
+/* ---------- 7. หน้าติดต่อ ---------- */
+
+/* ป้ายสีเทา "มจพ.ปราจีน" ตรงกลางด้านบน */
+.campus-tag {
+  width: 240px;
+  max-width: 100%;
+  margin: 0 auto 2.5rem;
+  padding: 0.7rem;
+  text-align: center;
+  background: #d9d9d9;
+  font-size: 1.1rem;
+}
+
+/* แผนที่ (ซ้าย) + ข้อมูลติดต่อ (ขวา) */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.map {
+  width: 100%;
+  height: 360px;
+  border: 0;
+  background: #e5ece8;
+}
+
+/* ลิงก์ "เปิดใน Google Maps" ใต้แผนที่ */
+.map-link {
+  display: inline-block;
+  margin-top: 0.6rem;
+  font-size: 0.95rem;
+}
+
+.contact-info h2 {
+  margin: 0 0 0.4rem;
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+.contact-info p {
+  margin: 0 0 1.8rem;
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+
+
+/* ---------- 7.1 หน้าเข้าสู่ระบบ ---------- */
+
+/* การ์ดสีขาวกลางหน้า มีแถบสีส้มด้านบน */
+.login-card {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 1.75rem 1.75rem 1.5rem;
+  background: #fff;
+  border-top: 6px solid var(--orange);
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(60, 40, 20, 0.08);
+}
+
+.login-card h1 {
+  margin: 0 0 0.3rem;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.login-card .subtitle {
+  margin: 0 0 1.4rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* เว้นระยะระหว่างช่องกรอก */
+.login-card .field {
+  margin-bottom: 1.1rem;
+}
+
+/* ปุ่ม ยกเลิก / ยืนยัน แบ่งครึ่งความกว้างการ์ด */
+.login-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.4rem;
+}
+
+.login-actions .btn {
+  flex: 1;
+  min-width: 0;
+}
+
+
+/* ---------- 8. รองรับหน้าจอเล็ก ---------- */
+
+/* แท็บเล็ต (กว้างไม่เกิน 1100px): เปลี่ยนจาก 2 คอลัมน์เป็น 1 คอลัมน์ */
+@media (max-width: 1100px) {
+  .form-grid,
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .main-nav {
+    gap: 1.2rem;
+    padding-right: 0;
+    font-size: 0.95rem;
+  }
+
+  .site-footer {
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* มือถือ (กว้างไม่เกิน 640px): ช่องกรอกเรียงทีละช่อง ปุ่มกว้างเต็มจอ */
+@media (max-width: 640px) {
+  .fields {
+    grid-template-columns: 1fr;
+  }
+
+  .form-panel {
+    padding: 1rem;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;   /* ปุ่มยืนยันอยู่บน ยกเลิกอยู่ล่าง */
+  }
+
+  .form-actions .btn {
+    width: 100%;
+  }
+
+  .login-card {
+    margin: 1rem auto;
+    padding: 1.5rem 1.25rem;
+  }
+
+  .brand {
+    font-size: 0.95rem;
+  }
+
+  .map {
+    height: 280px;
+  }
+}

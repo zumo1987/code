@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <!-- ทำให้เว็บแสดงผลพอดีกับหน้าจอมือถือ -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>หน้าแรก | มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ</title>
+
+  <!-- ฟอนต์ภาษาไทยจาก Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- ไฟล์สไตล์ที่ใช้ร่วมกันทุกหน้า -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== ส่วนหัว: โลโก้ + เมนู ===== -->
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <img src="ing/logo.png" alt="ตราสัญลักษณ์มหาวิทยาลัย">
+      <span>มหาลัยพระจอมเกล้าพระนครเหนือ</span>
+    </a>
+
+    <nav class="main-nav" aria-label="เมนูหลัก">
+      <!-- aria-current="page" = หน้าที่เปิดอยู่ (จะมีเส้นใต้) -->
+      <a href="index.html" aria-current="page">หน้าแรก</a>
+      <a href="form.html">สมัครเรียน</a>
+      <a href="login.html">เข้าสู่ระบบ</a>
+      <a href="contact.html">ติดต่อ</a>
+    </nav>
+  </header>
+
+  <!-- ===== เนื้อหาหลัก: แบนเนอร์ ===== -->
+  <main>
+    <!-- คลิกที่แบนเนอร์ → ไปหน้าสมัครเรียน -->
+    <a href="form.html">
+      <img class="banner" src="ing/banner.png"
+           alt="กำหนดการรับนักศึกษาใหม่ ปีการศึกษา 2570 (คลิกเพื่อสมัครเรียน)">
+    </a>
+
+    <!-- โปสเตอร์ประกาศรับสมัคร TCAS รอบที่ 4 (ใต้แบนเนอร์) -->
+    <img class="poster" src="ing/ing2.png"
+         alt="ประกาศรับสมัครนักศึกษาใหม่ TCAS รอบที่ 4 Direct Admission มจพ. พร้อมตารางจำนวนรับแต่ละคณะ">
+  </main>
+
+  <!-- ===== ส่วนท้าย: ที่อยู่หน่วยงาน ===== -->
+  <footer class="site-footer">
+    <p>กลุ่มงานรับเข้าศึกษา กองบริการการศึกษา สำนักงานอธิการบดี ชั้น 2 อาคาร TGGS</p>
+    <p>มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ 1518 ถนนประชาราษฎร์ 1 แขวงวงศ์สว่าง เขตบางซื่อ กรุงเทพฯ 10800</p>
+    <p>โทรศัพท์: +66 2 555-2000 ต่อ 1626,1627 | +66 2 555-2171</p>
+  </footer>
+
+</body>
+</html>

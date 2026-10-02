@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>สมัครเรียน | มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<!-- class="page-form" = ให้หน้านี้มีพื้นหลังสีเทาอุ่น (ดูใน style.css) -->
+<body class="page-form">
+
+  <!-- ===== ส่วนหัว: โลโก้ + เมนู ===== -->
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <img src="ing/logo.png" alt="ตราสัญลักษณ์มหาวิทยาลัย">
+      <span>มหาลัยพระจอมเกล้าพระนครเหนือ</span>
+    </a>
+
+    <nav class="main-nav" aria-label="เมนูหลัก">
+      <a href="index.html">หน้าแรก</a>
+      <a href="form.html" aria-current="page">สมัครเรียน</a>
+      <a href="login.html">เข้าสู่ระบบ</a>
+      <a href="contact.html">ติดต่อ</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- หัวข้อด้านบนฟอร์ม -->
+    <div class="form-title">
+      <h1>สมัครเรียน</h1>
+      <p>กรอกข้อมูลให้ครบทุกช่องที่มีเครื่องหมาย * แล้วกด “ยืนยัน”</p>
+    </div>
+
+    <!-- ===== ฟอร์มสมัครเรียน =====
+         action="#"  → ตอนนี้ยังไม่ส่งไปไหน (ใส่ลิงก์ของ server ทีหลัง)
+         method="post" → ส่งข้อมูลแบบ POST
+         enctype="multipart/form-data" → จำเป็นเมื่อฟอร์มมีการอัปโหลดไฟล์ -->
+    <form class="form-panel" action="#" method="post" enctype="multipart/form-data">
+
+      <div class="form-grid">
+
+        <!-- ---------- หัวข้อ 1: ข้อมูลส่วนตัว ---------- -->
+        <section class="form-section">
+          <h2><span class="step">1</span>ข้อมูลส่วนตัว</h2>
+
+          <div class="fields">
+            <!-- ช่องกรอก 1 ช่อง = label + input (required = ต้องกรอก) -->
+            <div class="field">
+              <label for="fullname">ชื่อ–นามสกุล <span class="req">*</span></label>
+              <input type="text" id="fullname" name="fullname" autocomplete="name" required>
+            </div>
+
+            <div class="field">
+              <label for="citizen-id">เลขบัตรประชาชน <span class="req">*</span></label>
+              <!-- pattern="[0-9]{13}" = ต้องเป็นตัวเลข 13 หลักเท่านั้น -->
+              <input type="text" id="citizen-id" name="citizen_id"
+                     inputmode="numeric" maxlength="13" pattern="[0-9]{13}"
+                     placeholder="13 หลัก" required>
+            </div>
+
+            <div class="field">
+              <label for="birthdate">วัน/เดือน/ปีเกิด <span class="req">*</span></label>
+              <input type="date" id="birthdate" name="birthdate" autocomplete="bday" required>
+            </div>
+
+            <div class="field">
+              <label for="phone">เบอร์โทรศัพท์ <span class="req">*</span></label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel" required>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---------- หัวข้อ 3: ข้อมูลที่ต้องการสมัคร ---------- -->
+        <section class="form-section">
+          <h2><span class="step">3</span>ข้อมูลที่ต้องการสมัคร</h2>
+
+          <div class="fields">
+            <div class="field">
+              <label for="apply-university">มหาวิทยาลัย <span class="req">*</span></label>
+              <input type="text" id="apply-university" name="apply_university" required>
+            </div>
+
+            <div class="field">
+              <label for="apply-faculty">คณะ <span class="req">*</span></label>
+              <input type="text" id="apply-faculty" name="apply_faculty" required>
+            </div>
+
+            <div class="field">
+              <label for="apply-major">สาขาวิชา <span class="req">*</span></label>
+              <input type="text" id="apply-major" name="apply_major" required>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---------- หัวข้อ 2: ประวัติข้อมูลการศึกษา ---------- -->
+        <section class="form-section">
+          <h2><span class="step">2</span>ประวัติข้อมูลการศึกษา</h2>
+
+          <div class="fields">
+            <div class="field">
+              <label for="school">ชื่อสถานศึกษา <span class="req">*</span></label>
+              <input type="text" id="school" name="school" required>
+            </div>
+
+            <div class="field">
+              <label for="edu-level">ระดับการศึกษาที่จบ <span class="req">*</span></label>
+              <input type="text" id="edu-level" name="edu_level" required>
+            </div>
+
+            <div class="field">
+              <label for="edu-major">สาขาวิชา</label>
+              <input type="text" id="edu-major" name="edu_major">
+            </div>
+
+            <div class="field">
+              <label for="gpa">เกรดเฉลี่ย (GPA/GPAX) <span class="req">*</span></label>
+              <!-- รับเฉพาะตัวเลข 0 – 4 ทศนิยม 2 ตำแหน่ง -->
+              <input type="number" id="gpa" name="gpa" min="0" max="4" step="0.01" required>
+            </div>
+
+            <!-- ช่องอัปโหลดไฟล์ (ดูรูปแบบเต็มที่หัวข้อ 4 ด้านล่าง) -->
+            <div class="field">
+              <span class="label">ใบแสดงผลการเรียน</span>
+              <label class="upload">
+                <span class="upload-btn">อัปโหลดไฟล์</span>
+                <span class="upload-name">ยังไม่ได้เลือกไฟล์</span>
+                <input type="file" name="transcript" accept=".pdf,.jpg,.jpeg,.png">
+              </label>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---------- หัวข้อ 4: เอกสารประกอบ ---------- -->
+        <section class="form-section">
+          <h2><span class="step">4</span>เอกสารประกอบ</h2>
+
+          <div class="fields">
+            <!-- ช่องอัปโหลดไฟล์ 1 ช่อง ประกอบด้วย 3 ส่วน:
+                 1) .upload-btn  = ป้าย "อัปโหลดไฟล์"
+                 2) .upload-name = ชื่อไฟล์ที่เลือก (JavaScript ด้านล่างเป็นคนเปลี่ยนข้อความ)
+                 3) input file   = ตัวเลือกไฟล์จริง (ซ่อนไว้ด้วย CSS)
+                 accept = จำกัดชนิดไฟล์ที่เลือกได้ -->
+            <div class="field">
+              <span class="label">สำเนาบัตรประชาชน</span>
+              <label class="upload">
+                <span class="upload-btn">อัปโหลดไฟล์</span>
+                <span class="upload-name">ยังไม่ได้เลือกไฟล์</span>
+                <input type="file" name="id_card_copy" accept=".pdf,.jpg,.jpeg,.png">
+              </label>
+            </div>
+
+            <div class="field">
+              <span class="label">สำเนาทะเบียนบ้าน</span>
+              <label class="upload">
+                <span class="upload-btn">อัปโหลดไฟล์</span>
+                <span class="upload-name">ยังไม่ได้เลือกไฟล์</span>
+                <input type="file" name="house_registration" accept=".pdf,.jpg,.jpeg,.png">
+              </label>
+            </div>
+
+            <div class="field">
+              <span class="label">รูปถ่าย</span>
+              <label class="upload">
+                <span class="upload-btn">อัปโหลดไฟล์</span>
+                <span class="upload-name">ยังไม่ได้เลือกไฟล์</span>
+                <input type="file" name="photo" accept=".jpg,.jpeg,.png">
+              </label>
+            </div>
+          </div>
+        </section>
+
+      </div><!-- จบ .form-grid -->
+
+      <!-- ปุ่มด้านล่าง
+           ยกเลิก = ลิงก์กลับหน้าแรก
+           ยืนยัน = ส่งฟอร์ม (เบราว์เซอร์จะเช็กช่อง required ให้ก่อน) -->
+      <div class="form-actions">
+        <a class="btn btn-cancel" href="index.html">ยกเลิก</a>
+        <button type="submit" class="btn btn-confirm">ยืนยัน</button>
+      </div>
+
+    </form>
+  </main>
+
+  <!-- ===== ส่วนท้าย ===== -->
+  <footer class="site-footer">
+    <p>กลุ่มงานรับเข้าศึกษา กองบริการการศึกษา สำนักงานอธิการบดี ชั้น 2 อาคาร TGGS</p>
+    <p>มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ 1518 ถนนประชาราษฎร์ 1 แขวงวงศ์สว่าง เขตบางซื่อ กรุงเทพฯ 10800</p>
+    <p>โทรศัพท์: +66 2 555-2000 ต่อ 1626,1627 | +66 2 555-2171</p>
+  </footer>
+
+  <!-- ===== JavaScript: แสดงชื่อไฟล์ + จัดการตอนกดยืนยัน ===== -->
+  <script>
+    var NO_FILE_TEXT = 'ยังไม่ได้เลือกไฟล์';
+
+    // วนทำกับช่องอัปโหลดไฟล์ทุกช่องในหน้า
+    document.querySelectorAll('.upload').forEach(function (box) {
+      var fileInput = box.querySelector('input');      // ตัวเลือกไฟล์จริง
+      var nameText  = box.querySelector('.upload-name'); // ข้อความแสดงชื่อไฟล์
+
+      // เมื่อผู้ใช้เลือกไฟล์ → แสดงชื่อไฟล์ และทำให้กรอบเป็นสีเขียว
+      fileInput.addEventListener('change', function () {
+        var chosen = fileInput.files.length > 0;
+        nameText.textContent = chosen ? fileInput.files[0].name : NO_FILE_TEXT;
+        box.classList.toggle('has-file', chosen);
+      });
+    });
+
+    // เมื่อกด "ยืนยัน" และกรอกครบแล้ว → แจ้งผล แล้วกลับหน้าแรก
+    document.querySelector('form').addEventListener('submit', function (event) {
+      event.preventDefault();                       // กันไม่ให้หน้าโหลดซ้ำ
+      alert('ส่งใบสมัครเรียบร้อยแล้ว');
+      window.location.href = 'index.html';          // กลับหน้าแรก
+    });
+  </script>
+
+</body>
+</html>
